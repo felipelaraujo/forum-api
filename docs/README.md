@@ -6,7 +6,7 @@ A forum where posts and comments are anonymous, they cannot be identified, edite
 
 The API must be able to create posts, comments, reply to comments, and have upvote functionality.
 
-## Requirements specifications v1.0
+## Requirements specification v1.0
 
 | Priority | Requirement                          |
 |----------|--------------------------------------|
