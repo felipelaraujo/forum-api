@@ -1,15 +1,10 @@
 import type { Request, Response } from 'express'
 
-import type { SuccessResponse } from '../server/responses/success.response'
-import type { FailResponse } from '../server/responses/fail.response'
 import { ReplyService } from '../service/reply.service'
-import { BAD_REQUEST, CREATED } from '../helpers/utils.helper'
+import { BAD_REQUEST, CREATED, OK } from '../helpers/utils.helper'
 
 export class ReplyController {
-  public createReply(
-    request: Request,
-    response: Response
-  ): SuccessResponse | FailResponse {
+  public createReply(request: Request, response: Response) {
     try {
       const replyService = new ReplyService()
 
@@ -17,29 +12,25 @@ export class ReplyController {
 
       response.status(CREATED)
       response.json({ message: 'ok', data: successReply })
-
-      return {
-        message: 'ok',
-        data: successReply,
-      }
     } catch (error) {
       response.status(BAD_REQUEST)
       response.json({ message: 'error', error })
-
-      return {
-        message: 'error',
-        error,
-      }
     }
   }
 
   public getReply(request: Request, response: Response) {
     try {
+      const replyService = new ReplyService()
+
+      const reply = replyService.getReply(request)
+
+      response.status(OK)
       response.json({
         message: 'ok',
-        data: 'data',
+        data: reply,
       })
     } catch (error) {
+      response.status(BAD_REQUEST)
       response.json({
         message: 'error',
         error,

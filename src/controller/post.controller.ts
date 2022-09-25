@@ -1,45 +1,36 @@
 import type { Request, Response } from 'express'
 
 import { PostService } from '../service/post.service'
-import type { SuccessResponse } from '../server/responses/success.response'
-import type { FailResponse } from '../server/responses/fail.response'
-import { BAD_REQUEST, CREATED } from '../helpers/utils.helper'
+import { BAD_REQUEST, CREATED, OK } from '../helpers/utils.helper'
 
 export class PostController {
-  public createPost(
-    request: Request,
-    response: Response
-  ): SuccessResponse | FailResponse {
+  public createPost(request: Request, response: Response) {
     try {
       const postService = new PostService()
 
-      const successPost = postService.makePost(request)
+      const successPost = postService.createPost(request)
 
       response.status(CREATED)
       response.json({ message: 'ok', data: successPost })
-
-      return {
-        message: 'ok',
-        data: successPost,
-      }
     } catch (error) {
       response.status(BAD_REQUEST)
       response.json({ message: 'error', error })
-
-      return {
-        message: 'error',
-        error,
-      }
     }
   }
 
   public getPost(request: Request, response: Response) {
     try {
+      const postService = new PostService()
+
+      const post = postService.getPost(request)
+
+      response.status(OK)
       response.json({
         message: 'ok',
-        data: 'data',
+        data: post,
       })
     } catch (error) {
+      response.status(BAD_REQUEST)
       response.json({
         message: 'error',
         error,

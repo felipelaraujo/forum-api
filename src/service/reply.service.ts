@@ -7,4 +7,12 @@ export class ReplyService {
       replyContent: request.body.replyContent,
     }
   }
+
+  public getReply(request: Request) {
+    return {
+      id: '1',
+      replyContent: request.body.replyContent,
+      upvotes: 200,
+    }
+  }
 }

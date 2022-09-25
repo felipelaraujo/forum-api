@@ -1,15 +1,10 @@
 import type { Request, Response } from 'express'
 
-import type { SuccessResponse } from '../server/responses/success.response'
-import type { FailResponse } from '../server/responses/fail.response'
 import { UpvoteService } from '../service/upvote.service'
 import { BAD_REQUEST, CREATED } from '../helpers/utils.helper'
 
 export class UpvoteController {
-  public upvotePost(
-    request: Request,
-    response: Response
-  ): SuccessResponse | FailResponse {
+  public upvotePost(request: Request, response: Response) {
     try {
       const upvoteService = new UpvoteService()
 
@@ -17,26 +12,13 @@ export class UpvoteController {
 
       response.status(CREATED)
       response.json({ message: 'ok', data: successUpvotePost })
-
-      return {
-        message: 'ok',
-        data: successUpvotePost,
-      }
     } catch (error) {
       response.status(BAD_REQUEST)
       response.json({ message: 'error', error })
-
-      return {
-        message: 'error',
-        error,
-      }
     }
   }
 
-  public upvoteComment(
-    request: Request,
-    response: Response
-  ): SuccessResponse | FailResponse {
+  public upvoteComment(request: Request, response: Response) {
     try {
       const upvoteService = new UpvoteService()
 
@@ -44,26 +26,13 @@ export class UpvoteController {
 
       response.status(CREATED)
       response.json({ message: 'ok', data: successUpvoteComment })
-
-      return {
-        message: 'ok',
-        data: successUpvoteComment,
-      }
     } catch (error) {
       response.status(BAD_REQUEST)
       response.json({ message: 'error', error })
-
-      return {
-        message: 'error',
-        error,
-      }
     }
   }
 
-  public upvoteReply(
-    request: Request,
-    response: Response
-  ): SuccessResponse | FailResponse {
+  public upvoteReply(request: Request, response: Response) {
     try {
       const upvoteService = new UpvoteService()
 
@@ -71,19 +40,9 @@ export class UpvoteController {
 
       response.status(CREATED)
       response.json({ message: 'ok', data: successUpvoteReply })
-
-      return {
-        message: 'ok',
-        data: successUpvoteReply,
-      }
     } catch (error) {
       response.status(BAD_REQUEST)
       response.json({ message: 'error', error })
-
-      return {
-        message: 'error',
-        error,
-      }
     }
   }
 }
