@@ -1,11 +1,9 @@
-import express from 'express';
+import {startServer} from './server/server';
+import {configRoutes} from './server/router/routes';
 
-const app = express();
+function startApp() {
+	const server = startServer();
+	configRoutes(server);
+}
 
-app.listen(process.env.PORT, () => {
-  console.log(`[INFO] App running at http://localhost:${process.env.PORT}`);
-});
-
-app.get('/', (req, res) => {
-  res.send({ message: 'Hello, world!' });
-});
+startApp();
