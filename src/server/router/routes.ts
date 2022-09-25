@@ -1,39 +1,39 @@
-import type {Express, Request, Response} from 'express';
+import type { Express } from 'express'
+
+import { PostController } from '../../controller/post.controller'
+import { CommentController } from '../../controller/comment.controller'
+import { ReplyController } from '../../controller/reply.controller'
+import { UpvoteController } from '../../controller/upvote.controller'
 
 export function configRoutes(server: Express) {
-	server.post('/post', (req: Request, res: Response) => {
-		res.send({
-			message: 'post',
-		});
-	});
+  const postController = new PostController()
+  const commentController = new CommentController()
+  const replyController = new ReplyController()
+  const upvoteController = new UpvoteController()
 
-	server.post('/post/comment/:id', (req: Request, res: Response) => {
-		res.send({
-			message: `comment post id: ${req.params.id}`,
-		});
-	});
+  const baseUrl = '/post'
 
-	server.post('/comment/reply/:id', (req: Request, res: Response) => {
-		res.send({
-			message: `reply comment id: ${req.params.id}`,
-		});
-	});
+  server.post(baseUrl, postController.createPost)
 
-	server.patch('/post/upvote/:id', (req: Request, res: Response) => {
-		res.send({
-			message: `upvote post id: ${req.params.id}`,
-		});
-	});
+  server.get(`${baseUrl}/:id`, postController.getPost)
 
-	server.patch('/comment/upvote/:id', (req: Request, res: Response) => {
-		res.send({
-			message: `upvote comment id: ${req.params.id}`,
-		});
-	});
+  server.post(`${baseUrl}/:id/comment`, commentController.createComment)
 
-	server.patch('/reply/upvote/:id', (req: Request, res: Response) => {
-		res.send({
-			message: `upvote reply id: ${req.params.id}`,
-		});
-	});
+  server.get(`${baseUrl}/:id/comment/:id`, commentController.getComment)
+
+  server.post(`${baseUrl}/:id/comment/:id/reply`, replyController.createReply)
+
+  server.get(`${baseUrl}/:id/comment/:id/reply/:id`, replyController.getReply)
+
+  server.patch(`${baseUrl}/:id/upvote`, upvoteController.upvotePost)
+
+  server.patch(
+    `${baseUrl}/:id/comment/:id/upvote`,
+    upvoteController.upvoteComment
+  )
+
+  server.patch(
+    `${baseUrl}/:id/comment/:id/reply/:id/upvote`,
+    upvoteController.upvoteReply
+  )
 }

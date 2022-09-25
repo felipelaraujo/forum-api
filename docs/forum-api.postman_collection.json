@@ -1,91 +1,160 @@
 {
 	"info": {
-		"_postman_id": "59a34e00-857a-4013-9319-38961f7d5935",
+		"_postman_id": "39303a63-408b-4a35-80c0-67535061ecd5",
 		"name": "forum-api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "MAKE A POST",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"postContent\": \"Aenean ut tortor velit. Ut non tellus arcu. Integer turpis erat, tristique vitae lobortis eget, maximus id dui. Nullam nec velit ut enim maximus finibus. Phasellus aliquam ut justo nec vestibulum. Sed pretium mollis augue, quis tempus urna consectetur ut. Etiam rhoncus pellentesque lectus vitae faucibus. Suspendisse potenti. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "POST",
+			"item": [
+				{
+					"name": "MAKE A POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"postContent\": \"Aenean ut tortor velit. Ut non tellus arcu. Integer turpis erat, tristique vitae lobortis eget, maximus id dui. Nullam nec velit ut enim maximus finibus. Phasellus aliquam ut justo nec vestibulum. Sed pretium mollis augue, quis tempus urna consectetur ut. Etiam rhoncus pellentesque lectus vitae faucibus. Suspendisse potenti. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{baseUrl}}/post",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"post"
-					]
+				{
+					"name": "GET POST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "MAKE A COMMENT",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"commentContent\": \"Vestibulum pharetra ipsum laoreet, convallis urna non, tristique mauris. In luctus arcu id est ultrices tincidunt. Vestibulum molestie sodales felis, non suscipit ligula fermentum sed. Ut id vulputate tellus. Etiam eget turpis ligula. Pellentesque sit amet ante eu risus ultrices tristique. Quisque tempus fermentum pharetra.\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "COMMENT",
+			"item": [
+				{
+					"name": "MAKE A COMMENT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"commentContent\": \"Vestibulum pharetra ipsum laoreet, convallis urna non, tristique mauris. In luctus arcu id est ultrices tincidunt. Vestibulum molestie sodales felis, non suscipit ligula fermentum sed. Ut id vulputate tellus. Etiam eget turpis ligula. Pellentesque sit amet ante eu risus ultrices tristique. Quisque tempus fermentum pharetra.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/1/comment",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"1",
+								"comment"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{baseUrl}}/post/comment/{{id}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"post",
-						"comment",
-						"{{id}}"
-					]
+				{
+					"name": "GET COMMENT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/1/comment/2",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"1",
+								"comment",
+								"2"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "REPLY COMMENT",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"replyContent\": \"Nam risus risus, dapibus a nunc in, laoreet eleifend arcu. Sed quis ornare ante.\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "REPLY",
+			"item": [
+				{
+					"name": "REPLY COMMENT",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"replyContent\": \"Nam risus risus, dapibus a nunc in, laoreet eleifend arcu. Sed quis ornare ante.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/1/comment/2/reply",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"1",
+								"comment",
+								"2",
+								"reply"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{baseUrl}}/comment/reply/{{id}}",
-					"host": [
-						"{{baseUrl}}"
-					],
-					"path": [
-						"comment",
-						"reply",
-						"{{id}}"
-					]
+				{
+					"name": "GET REPLY",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/1/comment/2/reply/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"1",
+								"comment",
+								"2",
+								"reply",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
 			"name": "UPVOTE POST",
@@ -93,14 +162,13 @@
 				"method": "PATCH",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/post/upvote/{{id}}",
+					"raw": "{{baseUrl}}/1/upvote",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
-						"post",
-						"upvote",
-						"{{id}}"
+						"1",
+						"upvote"
 					]
 				}
 			},
@@ -112,14 +180,15 @@
 				"method": "PATCH",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/comment/upvote/{{id}}",
+					"raw": "{{baseUrl}}/1/comment/2/upvote",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
+						"1",
 						"comment",
-						"upvote",
-						"{{id}}"
+						"2",
+						"upvote"
 					]
 				}
 			},
@@ -131,14 +200,17 @@
 				"method": "PATCH",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/reply/upvote/{{id}}",
+					"raw": "{{baseUrl}}/1/comment/2/reply/3/upvote",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
+						"1",
+						"comment",
+						"2",
 						"reply",
-						"upvote",
-						"{{id}}"
+						"3",
+						"upvote"
 					]
 				}
 			},
@@ -168,13 +240,13 @@
 	"variable": [
 		{
 			"key": "baseUrl",
-			"value": "http://localhost:3000",
+			"value": "http://localhost:3000/post",
 			"type": "default"
 		},
 		{
-			"key": "id",
-			"value": "1",
-			"type": "default"
+			"value": "",
+			"type": "default",
+			"disabled": true
 		}
 	]
 }
