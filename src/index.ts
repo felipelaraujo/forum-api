@@ -1,11 +1,11 @@
-import express from 'express'
+import express from 'express';
 
-const app = express()
+const app = express();
 
 app.listen(process.env.PORT, () => {
-	console.log(`[INFO] App running at http://localhost:${process.env.PORT}`)
-})
+  console.log(`[INFO] App running at http://localhost:${process.env.PORT}`);
+});
 
 app.get('/', (req, res) => {
-	res.send({ message: 'Hello, world!' })
-})
+  res.send({ message: 'Hello, world!' });
+});
