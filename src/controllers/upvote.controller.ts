@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express'
 
-import { UpvoteService } from '../service/upvote.service'
+import { UpvoteService } from '../services/upvote.service'
 import { BAD_REQUEST, CREATED } from '../helpers/utils.helper'
 
 export class UpvoteController {

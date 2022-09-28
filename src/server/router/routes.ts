@@ -1,9 +1,9 @@
 import type { Express } from 'express'
 
-import { PostController } from '../../controller/post.controller'
-import { CommentController } from '../../controller/comment.controller'
-import { ReplyController } from '../../controller/reply.controller'
-import { UpvoteController } from '../../controller/upvote.controller'
+import { PostController } from '../../controllers/post.controller'
+import { CommentController } from '../../controllers/comment.controller'
+import { ReplyController } from '../../controllers/reply.controller'
+import { UpvoteController } from '../../controllers/upvote.controller'
 
 export function configRoutes(server: Express) {
   const postController = new PostController()

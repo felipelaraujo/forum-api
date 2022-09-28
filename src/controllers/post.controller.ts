@@ -1,33 +1,33 @@
 import type { Request, Response } from 'express'
 
-import { CommentService } from '../service/comment.service'
+import { PostService } from '../services/post.service'
 import { BAD_REQUEST, CREATED, OK } from '../helpers/utils.helper'
 
-export class CommentController {
-  public createComment(request: Request, response: Response) {
+export class PostController {
+  public createPost(request: Request, response: Response) {
     try {
-      const service = new CommentService()
+      const postService = new PostService()
 
-      const successComment = service.makeComment(request)
+      const successPost = postService.createPost(request)
 
       response.status(CREATED)
-      response.json({ message: 'ok', data: successComment })
+      response.json({ message: 'ok', data: successPost })
     } catch (error) {
       response.status(BAD_REQUEST)
       response.json({ message: 'error', error })
     }
   }
 
-  public getComment(request: Request, response: Response) {
+  public getPost(request: Request, response: Response) {
     try {
-      const commentService = new CommentService()
+      const postService = new PostService()
 
-      const comment = commentService.getComment(request)
+      const post = postService.getPost(request)
 
       response.status(OK)
       response.json({
         message: 'ok',
-        data: comment,
+        data: post,
       })
     } catch (error) {
       response.status(BAD_REQUEST)
