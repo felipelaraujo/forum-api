@@ -1,7 +1,14 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
 import { MaxLength } from 'class-validator'
 
 import { ReplysEntity } from './replys.entity'
+import { PostsEntity } from './posts.entity'
 
 @Entity({ name: 'comments' })
 export class CommentsEntity {
@@ -12,9 +19,12 @@ export class CommentsEntity {
   @Column({ length: 4000 })
   comment_content: string
 
-  @Column()
+  @Column({ nullable: true })
   upvotes: number
 
-  @OneToMany(() => ReplysEntity, (replys) => replys.reply_content)
+  @ManyToOne(() => PostsEntity, (post) => post.comments)
+  post: PostsEntity | null // TODO: ver isso aqui depois, não sei se pode voltar null
+
+  @OneToMany(() => ReplysEntity, (replys) => replys.comment)
   replys: ReplysEntity[]
 }

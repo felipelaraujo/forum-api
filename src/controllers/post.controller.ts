@@ -4,25 +4,25 @@ import { PostService } from '../services/post.service'
 import { BAD_REQUEST, CREATED, OK } from '../helpers/utils.helper'
 
 export class PostController {
-  public createPost(request: Request, response: Response) {
+  public async createPost(request: Request, response: Response) {
     try {
       const postService = new PostService()
 
-      const successPost = postService.createPost(request)
+      const savedPost = await postService.createPost(request)
 
       response.status(CREATED)
-      response.json({ message: 'ok', data: successPost })
+      response.json({ message: 'created', data: savedPost })
     } catch (error) {
       response.status(BAD_REQUEST)
       response.json({ message: 'error', error })
     }
   }
 
-  public getPost(request: Request, response: Response) {
+  public async getPost(request: Request, response: Response) {
     try {
       const postService = new PostService()
 
-      const post = postService.getPost(request)
+      const post = await postService.getPost(request)
 
       response.status(OK)
       response.json({

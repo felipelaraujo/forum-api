@@ -1,5 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 import { MaxLength } from 'class-validator'
+
+import { CommentsEntity } from './comments.entity'
 
 @Entity({ name: 'replys' })
 export class ReplysEntity {
@@ -10,6 +12,9 @@ export class ReplysEntity {
   @Column({ length: 4000 })
   reply_content: string
 
-  @Column()
+  @Column({ nullable: true })
   upvotes: number
+
+  @ManyToOne(() => CommentsEntity, (comment) => comment.replys)
+  comment: CommentsEntity
 }

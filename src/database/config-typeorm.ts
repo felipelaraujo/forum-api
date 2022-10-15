@@ -17,3 +17,12 @@ export const dbConnection = new DataSource({
   subscribers: [],
   migrations: [],
 })
+
+dbConnection
+  .initialize()
+  .then(() => {
+    console.info('Database connection has been initialized')
+  })
+  .catch((error) => {
+    console.error('Error during database initialization. Error: ', error)
+  })

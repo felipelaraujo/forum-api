@@ -12,9 +12,9 @@ export class PostsEntity {
   @Column({ length: 4000 })
   post_content: string
 
-  @Column()
+  @Column({ nullable: true })
   upvotes: number
 
-  @OneToMany(() => CommentsEntity, (comment) => comment.comment_content)
+  @OneToMany(() => CommentsEntity, (comment) => comment.post)
   comments: CommentsEntity[]
 }

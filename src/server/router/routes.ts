@@ -13,22 +13,35 @@ export function configRoutes(server: Express) {
 
   const baseUrl = '/post'
 
+  // POST
   server.post(baseUrl, postController.createPost)
-  server.get(`${baseUrl}/:id`, postController.getPost)
+  server.get(`${baseUrl}/:postId`, postController.getPost)
 
-  server.post(`${baseUrl}/:id/comment`, commentController.createComment)
-  server.get(`${baseUrl}/:id/comment/:id`, commentController.getComment)
+  // COMMENT
+  server.post(`${baseUrl}/:postId/comment`, commentController.createComment)
+  server.get(
+    `${baseUrl}/:postId/comment/:commentId`,
+    commentController.getComment
+  )
 
-  server.post(`${baseUrl}/:id/comment/:id/reply`, replyController.createReply)
-  server.get(`${baseUrl}/:id/comment/:id/reply/:id`, replyController.getReply)
+  // REPLY
+  server.post(
+    `${baseUrl}/:postId/comment/:commentId/reply`,
+    replyController.createReply
+  )
+  server.get(
+    `${baseUrl}/:postId/comment/:commentId/reply/:replyId`,
+    replyController.getReply
+  )
 
-  server.patch(`${baseUrl}/:id/upvote`, upvoteController.upvotePost)
+  // UPVOTE
+  server.patch(`${baseUrl}/:postId/upvote`, upvoteController.upvotePost)
   server.patch(
-    `${baseUrl}/:id/comment/:id/upvote`,
+    `${baseUrl}/:postId/comment/:commentId/upvote`,
     upvoteController.upvoteComment
   )
   server.patch(
-    `${baseUrl}/:id/comment/:id/reply/:id/upvote`,
+    `${baseUrl}/:postId/comment/:commentId/reply/:replyId/upvote`,
     upvoteController.upvoteReply
   )
 }

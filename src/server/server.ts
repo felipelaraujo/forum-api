@@ -6,7 +6,7 @@ export function startServer() {
   app.use(express.json())
 
   app.listen(process.env.PORT, () => {
-    console.log(`[INFO] App running at http://localhost:${process.env.PORT}`)
+    console.info(`[INFO] App running at http://localhost:${process.env.PORT}`)
   })
 
   return app
