@@ -20,8 +20,12 @@ export function configRoutes(server: Express) {
   // COMMENT
   server.post(`${baseUrl}/:postId/comment`, commentController.createComment)
   server.get(
+    `${baseUrl}/:postId/comments`,
+    commentController.getAllPostComments
+  )
+  server.get(
     `${baseUrl}/:postId/comment/:commentId`,
-    commentController.getComment
+    commentController.getCommentById
   )
 
   // REPLY

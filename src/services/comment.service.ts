@@ -5,7 +5,7 @@ import { CommentsEntity } from '../database/entities/comments.entity'
 import { PostService } from './post.service'
 
 export class CommentService {
-  public async makeComment(request: Request) {
+  public async createComment(request: Request) {
     const comment = new CommentsEntity()
     const postService = new PostService()
 
@@ -15,12 +15,25 @@ export class CommentService {
     return dbConnection.manager.save(comment)
   }
 
-  public getComment(request: Request): Promise<CommentsEntity | null> {
+  public getAllPostComments(
+    request: Request
+  ): Promise<CommentsEntity[] | null> {
     return dbConnection
       .getRepository(CommentsEntity)
       .createQueryBuilder('comment')
-      .where('comment.id = :id AND comment.post.id = :postId', {
-        id: request.params.commentId,
+      .where('comment.post.id = :postId', {
+        postId: request.params.postId,
+      })
+      .leftJoinAndSelect('comment.post', 'post')
+      .getMany()
+  }
+
+  public getCommentById(request: Request): Promise<CommentsEntity | null> {
+    return dbConnection
+      .getRepository(CommentsEntity)
+      .createQueryBuilder('comment')
+      .where('comment.id = :commentId AND comment.post.id = :postId', {
+        commentId: request.params.commentId,
         postId: request.params.postId,
       })
       .leftJoinAndSelect('comment.post', 'post')

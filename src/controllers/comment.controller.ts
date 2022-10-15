@@ -8,7 +8,7 @@ export class CommentController {
     try {
       const service = new CommentService()
 
-      const savedComment = await service.makeComment(request)
+      const savedComment = await service.createComment(request)
 
       response.status(CREATED)
       response.json({ message: 'created', data: savedComment })
@@ -18,11 +18,31 @@ export class CommentController {
     }
   }
 
-  public async getComment(request: Request, response: Response) {
+  public async getAllPostComments(request: Request, response: Response) {
     try {
       const commentService = new CommentService()
 
-      const comment = await commentService.getComment(request)
+      const comments = await commentService.getAllPostComments(request)
+
+      response.status(OK)
+      response.json({
+        message: 'ok',
+        data: comments,
+      })
+    } catch (error) {
+      response.status(BAD_REQUEST)
+      response.json({
+        message: 'error',
+        error,
+      })
+    }
+  }
+
+  public async getCommentById(request: Request, response: Response) {
+    try {
+      const commentService = new CommentService()
+
+      const comment = await commentService.getCommentById(request)
 
       response.status(OK)
       response.json({
