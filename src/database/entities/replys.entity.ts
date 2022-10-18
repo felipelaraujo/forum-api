@@ -16,5 +16,5 @@ export class ReplysEntity {
   upvotes: number
 
   @ManyToOne(() => CommentsEntity, (comment) => comment.replys)
-  comment: CommentsEntity
+  comment: CommentsEntity | null // TODO: ver se esse null tá correto
 }

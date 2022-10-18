@@ -31,11 +31,16 @@ export function configRoutes(server: Express) {
   // REPLY
   server.post(
     `${baseUrl}/:postId/comment/:commentId/reply`,
-    replyController.createReply
+    replyController.replyComment
   )
   server.get(
+    `${baseUrl}/:postId/comment/:commentId/replys`,
+    replyController.getAllReplys
+  )
+
+  server.get(
     `${baseUrl}/:postId/comment/:commentId/reply/:replyId`,
-    replyController.getReply
+    replyController.getReplyById
   )
 
   // UPVOTE
