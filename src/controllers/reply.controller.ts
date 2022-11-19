@@ -1,60 +1,39 @@
 import type { Request, Response } from 'express'
 
 import { ReplyService } from '../services/reply.service'
-import { BAD_REQUEST, CREATED, OK } from '../helpers/utils.helper'
+import { CREATED, OK } from '../helpers/utils.helper'
 
 export class ReplyController {
   public async replyComment(request: Request, response: Response) {
-    try {
-      const replyService = new ReplyService()
+    const replyService = new ReplyService()
 
-      const reply = await replyService.replyComment(request)
+    const reply = await replyService.replyComment(request)
 
-      response.status(CREATED)
-      response.json({ message: 'created', data: reply })
-    } catch (error) {
-      response.status(BAD_REQUEST)
-      response.json({ message: 'error', error })
-    }
+    response.status(CREATED)
+    response.json({ message: 'created', data: reply })
   }
 
   public async getAllReplys(request: Request, response: Response) {
-    try {
-      const replyService = new ReplyService()
+    const replyService = new ReplyService()
 
-      const replys = await replyService.getAllReplys(request)
+    const replys = await replyService.getAllReplys(request)
 
-      response.status(OK)
-      response.json({
-        message: 'ok',
-        data: replys,
-      })
-    } catch (error) {
-      response.status(BAD_REQUEST)
-      response.json({
-        message: 'error',
-        error,
-      })
-    }
+    response.status(OK)
+    response.json({
+      message: 'ok',
+      data: replys,
+    })
   }
 
   public async getReplyById(request: Request, response: Response) {
-    try {
-      const replyService = new ReplyService()
+    const replyService = new ReplyService()
 
-      const reply = await replyService.getReplyById(request)
+    const reply = await replyService.getReplyById(request)
 
-      response.status(OK)
-      response.json({
-        message: 'ok',
-        data: reply,
-      })
-    } catch (error) {
-      response.status(BAD_REQUEST)
-      response.json({
-        message: 'error',
-        error,
-      })
-    }
+    response.status(OK)
+    response.json({
+      message: 'ok',
+      data: reply,
+    })
   }
 }

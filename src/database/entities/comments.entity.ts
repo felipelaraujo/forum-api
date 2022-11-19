@@ -23,7 +23,7 @@ export class CommentsEntity {
   upvotes: number
 
   @ManyToOne(() => PostsEntity, (post) => post.comments)
-  post: PostsEntity | null // TODO: ver isso aqui depois, não sei se pode voltar null
+  post: PostsEntity | null
 
   @OneToMany(() => ReplysEntity, (replys) => replys.comment)
   replys: ReplysEntity[]

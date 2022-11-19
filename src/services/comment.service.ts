@@ -25,6 +25,7 @@ export class CommentService {
         postId: request.params.postId,
       })
       .leftJoinAndSelect('comment.post', 'post')
+      .leftJoinAndSelect('comment.replys', 'replys')
       .getMany()
   }
 
@@ -37,6 +38,7 @@ export class CommentService {
         postId: request.params.postId,
       })
       .leftJoinAndSelect('comment.post', 'post')
+      .leftJoinAndSelect('comment.replys', 'replys')
       .getOne()
   }
 }

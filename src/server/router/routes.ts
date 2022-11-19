@@ -44,6 +44,7 @@ export function configRoutes(server: Express) {
   )
 
   // UPVOTE
+  // TODO: Upvote vai ter que ter verificação pra receber 1 curtida por usuário (como identificar usuário?)
   server.patch(`${baseUrl}/:postId/upvote`, upvoteController.upvotePost)
   server.patch(
     `${baseUrl}/:postId/comment/:commentId/upvote`,
